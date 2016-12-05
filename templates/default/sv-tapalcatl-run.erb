@@ -1,0 +1,6 @@
+#!/bin/bash
+
+exec 2>&1
+exec chpst -u <%= node[:tapalcatl][:user][:user] %> \
+     <%= node['go']['gobin'] %>/tapalcatl_server \
+     -config <%= node[:tapalcatl][:cfg_path] + "/" + node[:tapalcatl][:cfg_file] %>
