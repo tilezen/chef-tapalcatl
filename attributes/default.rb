@@ -18,45 +18,36 @@ default[:tapalcatl][:listen] = ':80'
 # S3 KeyPattern additionally can contain {hash} which is a partial md5 of the
 # pattern '{layer}/{z}/{x}/{y}.{fmt}' useful for distributing the filenames.
 #
-default[:tapalcatl][:patterns] = {
-  '/v1/{z}/{x}/{y}.{fmt}' => {
-    'File' => {
-      'BaseDir' => '/tmp/tiles'
-    },
-    'Layer' => 'all',
-    'ProxyURL' => 'http://upstream.server/{layer}/{z}/{x}/{y}.{fmt}',
-    'MetatileSize' => 1
-  },
-  '/v2/{z}/{x}/{y}.{fmt}' => {
-    'S3' => {
-      'Bucket' => 's3://bucket-name-here',
-      'KeyPattern' => '/{hash}/{z}/{x}/{y}.fmt',
-      'Prefix' => 'prefix'
-    },
-    'Layer' => 'all',
-    'ProxyURL' => 'http://upstream.server/{layer}/{z}/{x}/{y}.{fmt}',
-    'MetatileSize' => 1
-  }
-}
 
 # a mapping from the request extension to the MIME type to use in the returned
 # headers.
 default[:tapalcatl][:mime] = {
-  'json'     => 'application/json',
+  'json' => 'application/json',
+  'mvt' => 'application/x-protobuf',
+  'mvtb' => 'application/x-protobuf',
   'topojson' => 'application/json',
-  'mvt'      => 'application/x-protobuf',
-  'mvtb'     => 'application/x-protobuf',
 }
 
-# tapalcatl has a buffer pool to reduce GC pressure when copying large amounts
-# of data from the upstream server. the poolsize is the number of buffers to
-# retain, and should be sized to the number of concurrent requests expected.
-default[:tapalcatl][:poolsize] = 10
+# aws specific configuration
+default[:tapalcatl][:aws][:region] = 'us-east-1'
+default[:tapalcatl][:s3][:keypattern] = '/{prefix}/{hash}/{layer}/{z}/{x}/{y}.{fmt}'
 
-# the pool width is the size in bytes to initially assign. buffers can grow, so
+# these are expected to be set downstream
+default[:tapalcatl][:s3][:bucket] = ''
+default[:tapalcatl][:handler][:s3][:prefix] = ''
+
+# tapalcatl has a buffer pool to reduce GC pressure when copying large amounts
+# of data from the upstream server.
+default[:tapalcatl][:pool][:enabled] = true
+
+# the "num" is the number of buffers to retain, and should be sized to
+# the number of concurrent requests expected.
+default[:tapalcatl][:pool][:num] = 10
+
+# the pool entry is the size in bytes to initially assign. buffers can grow, so
 # it is not necessary to make this particularly large. a good value is the
 # average expected size of the zip files.
-default[:tapalcatl][:poolwidth] = 102400
+default[:tapalcatl][:pool][:entry] = 102400
 
 default[:tapalcatl][:runit][:timeout] = 60
 default[:tapalcatl][:user][:create_group] = true

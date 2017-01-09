@@ -1,8 +1,9 @@
 listen <%= node[:tapalcatl][:listen] %>
-patterns <%= node[:tapalcatl][:patterns].to_json %>
-<% if node[:tapalcatl][:healthcheck] -%>
+handler <%= @handler_cfg.to_json %>
+<%- if node[:tapalcatl][:healthcheck] -%>
 healthcheck <%= node[:tapalcatl][:healthcheck] %>
-<% end %>
-mime <%= node[:tapalcatl][:mime].to_json %>
-poolsize <%= node[:tapalcatl][:poolsize] %>
-poolwidth <%= node[:tapalcatl][:poolwidth] %>
+<%- end -%>
+<%- if node[:tapalcatl][:pool][:enabled] -%>
+poolnumentries <%= node[:tapalcatl][:pool][:num] %>
+poolentrysize <%= node[:tapalcatl][:pool][:entry] %>
+<%- end -%>
