@@ -54,3 +54,11 @@ default[:tapalcatl][:user][:create_group] = true
 default[:tapalcatl][:user][:enabled] = true
 default[:tapalcatl][:user][:home] = '/home/tapalcatl'
 default[:tapalcatl][:user][:user] = 'tapalcatl'
+
+default[:tapalcatl][:metrics][:enabled] = false
+# number of seconds that metrics get buffered before sending
+default[:tapalcatl][:metrics][:interval] = 0
+# addr should be a "host:port"
+default[:tapalcatl][:metrics][:statsd][:addr] = ''
+# prefix used when sending metrics to statsd
+default[:tapalcatl][:metrics][:statsd][:prefix] = ''
