@@ -8,7 +8,6 @@ Requirements
 
 #### recipes
 - `apt`
-- `golang`
 - `runit`
 - `user`
 

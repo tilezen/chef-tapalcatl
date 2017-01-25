@@ -40,13 +40,15 @@ template "#{node[:tapalcatl][:cfg_path]}/#{node[:tapalcatl][:cfg_file]}" do
   )
 end
 
-golang_package node[:tapalcatl][:package] do
-  action [:update, :install]
+remote_file "#{node[:tapalcatl][:bin]}/tapalcatl_server" do
+  source node[:tapalcatl][:url]
+  mode '0755'
+  action :create
   notifies :restart, 'runit_service[tapalcatl]', :delayed
 end
 
 execute 'allow tapalcatl to bind on <1024 ports' do
-  command 'setcap cap_net_bind_service=+ep ' + node['go']['gobin'] + '/tapalcatl_server'
+  command 'setcap cap_net_bind_service=+ep ' + node[:tapalcatl][:bin] + '/tapalcatl_server'
 end
 
 runit_service 'tapalcatl' do

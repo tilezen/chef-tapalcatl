@@ -10,7 +10,6 @@ recipe 'tapalcatl', 'Installs Tapalcatl'
 
 %w(
   apt
-  golang
   runit
   user
 ).each do |dep|

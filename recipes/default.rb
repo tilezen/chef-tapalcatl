@@ -9,7 +9,6 @@
 
 %w(
   apt::default
-  golang::packages
   tapalcatl::setup
   tapalcatl::install
 ).each do |r|

@@ -1,6 +1,5 @@
 DEPENDENCIES
   apt
-  golang
   ohai
   runit (= 1.5.10)
   tapalcatl
@@ -16,7 +15,6 @@ GRAPH
     mingw (>= 1.1)
     seven_zip (>= 0.0.0)
   compat_resource (12.16.2)
-  golang (1.7.0)
   mingw (1.2.4)
     compat_resource (>= 0.0.0)
     seven_zip (>= 0.0.0)
@@ -30,7 +28,6 @@ GRAPH
     windows (>= 1.2.2)
   tapalcatl (0.0.1)
     apt (>= 0.0.0)
-    golang (>= 0.0.0)
     runit (>= 0.0.0)
     user (>= 0.0.0)
   user (0.6.0)

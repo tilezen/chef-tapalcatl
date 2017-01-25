@@ -1,9 +1,8 @@
-default[:go][:version] = '1.7.3'
-
-default[:tapalcatl][:package] = 'github.com/tilezen/tapalcatl/tapalcatl_server'
-
+default[:tapalcatl][:bin] = '/usr/local/bin'
 default[:tapalcatl][:cfg_file] = 'tapalcatl.conf'
 default[:tapalcatl][:cfg_path] = '/etc/tapalcatl'
+default[:tapalcatl][:revision] = 'master'
+default[:tapalcatl][:url] = "https://s3.amazonaws.com/mapzen.software/tile/tapalcatl/tapalcatl_server-#{node[:tapalcatl][:revision]}"
 
 # interface:port to listen on
 default[:tapalcatl][:listen] = ':80'
