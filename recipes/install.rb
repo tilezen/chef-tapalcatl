@@ -40,8 +40,9 @@ template "#{node[:tapalcatl][:cfg_path]}/#{node[:tapalcatl][:cfg_file]}" do
   )
 end
 
+url = "https://s3.amazonaws.com/mapzen.software/tile/tapalcatl/tapalcatl_server-#{node[:tapalcatl][:revision]}"
 remote_file "#{node[:tapalcatl][:bin]}/tapalcatl_server" do
-  source node[:tapalcatl][:url]
+  source url
   mode '0755'
   action :create
   notifies :restart, 'runit_service[tapalcatl]', :delayed
