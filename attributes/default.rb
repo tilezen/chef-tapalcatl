@@ -31,8 +31,8 @@ default[:tapalcatl][:aws][:region] = 'us-east-1'
 default[:tapalcatl][:s3][:keypattern] = '/{prefix}/{hash}/{layer}/{z}/{x}/{y}.{fmt}'
 
 # these are expected to be set downstream
-default[:tapalcatl][:s3][:bucket] = ''
-default[:tapalcatl][:handler][:s3][:prefix] = ''
+default[:tapalcatl][:s3][:bucket] = 'put-your-bucket-name-here'
+default[:tapalcatl][:handler][:s3][:prefix] = 'put-your-prefix-here'
 
 # tapalcatl has a buffer pool to reduce GC pressure when copying large amounts
 # of data from the upstream server.
