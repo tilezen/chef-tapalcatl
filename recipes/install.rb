@@ -55,6 +55,6 @@ end
 runit_service 'tapalcatl' do
   action [:enable]
   log true
-  default_logger true
+  default_logger false
   sv_timeout node[:tapalcatl][:runit][:timeout]
 end
