@@ -11,6 +11,7 @@ include_recipe "runit"
 
 storage = {
   's3' => {
+    'type' => 's3',
     'bucket' => node[:tapalcatl][:s3][:bucket],
     'keypattern' => node[:tapalcatl][:s3][:keypattern],
     'layer' => 'all',
