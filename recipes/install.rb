@@ -15,6 +15,7 @@ storage = {
     'keypattern' => node[:tapalcatl][:s3][:keypattern],
     'layer' => 'all',
     'metatilesize' => 1,
+    'healthcheck' => node[:tapalcatl][:s3][:healthcheck],
   }
 }
 pattern = {
