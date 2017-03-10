@@ -19,7 +19,7 @@ storage = {
 }
 pattern = {
   '/mapzen/vector/v1/all/{z:[0-9]+}/{x:[0-9]+}/{y:[0-9]+}.{fmt}' => {
-    'type' => 's3',
+    'storage' => 's3',
     'prefix' => node[:tapalcatl][:handler][:s3][:prefix],
   }
 }
