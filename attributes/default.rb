@@ -33,6 +33,7 @@ default[:tapalcatl][:expvars][:log_interval] = 0
 # aws specific configuration
 default[:tapalcatl][:aws][:region] = 'us-east-1'
 default[:tapalcatl][:s3][:keypattern] = '/{prefix}/{hash}/{layer}/{z}/{x}/{y}.{fmt}'
+default[:tapalcatl][:s3][:healthcheck] = '/healthcheck.txt'
 
 # these are expected to be set downstream
 default[:tapalcatl][:s3][:bucket] = 'put-your-bucket-name-here'
