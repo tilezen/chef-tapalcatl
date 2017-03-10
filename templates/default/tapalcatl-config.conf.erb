@@ -11,3 +11,9 @@ poolentrysize <%= node[:tapalcatl][:pool][:entry] %>
 metrics-statsd-addr <%= node[:tapalcatl][:metrics][:statsd][:addr] %>
 metrics-statsd-prefix <%= node[:tapalcatl][:metrics][:statsd][:prefix] %>
 <%- end -%>
+<%- if node[:tapalcatl][:expvars][:serve] -%>
+expvar-serve <%= node[:tapalcatl][:expvars][:serve] %>
+<% end -%>
+<%- if node[:tapalcatl][:expvars][:log_interval] > 0 -%>
+expvar-log-interval <%= node[:tapalcatl][:expvars][:log_interval] %>
+<% end -%>

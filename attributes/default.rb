@@ -26,6 +26,10 @@ default[:tapalcatl][:mime] = {
   'topojson' => 'application/json',
 }
 
+# expvar configuration
+default[:tapalcatl][:expvars][:serve] = false
+default[:tapalcatl][:expvars][:log_interval] = 0
+
 # aws specific configuration
 default[:tapalcatl][:aws][:region] = 'us-east-1'
 default[:tapalcatl][:s3][:keypattern] = '/{prefix}/{hash}/{layer}/{z}/{x}/{y}.{fmt}'
