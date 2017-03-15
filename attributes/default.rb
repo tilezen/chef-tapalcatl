@@ -30,14 +30,23 @@ default[:tapalcatl][:mime] = {
 default[:tapalcatl][:expvars][:serve] = false
 default[:tapalcatl][:expvars][:log_interval] = 0
 
-# aws specific configuration
-default[:tapalcatl][:aws][:region] = 'us-east-1'
-default[:tapalcatl][:s3][:keypattern] = '/{prefix}/{hash}/{layer}/{z}/{x}/{y}.{fmt}'
-default[:tapalcatl][:s3][:healthcheck] = '/healthcheck.txt'
-
-# these are expected to be set downstream
-default[:tapalcatl][:s3][:bucket] = 'put-your-bucket-name-here'
-default[:tapalcatl][:handler][:s3][:prefix] = 'put-your-prefix-here'
+handler_cfg = {
+  'mime' => node[:tapalcatl][:mime],
+  'storage' => {
+    'tmp' => {
+      'type' => 'file',
+      'basedir' => '/tmp',
+      'metatilesize' => 1,
+      'layer' => 'all',
+    },
+  },
+  'pattern' => {
+    '/{z:[0-9]+}/{x:[0-9]+}/{y:[0-9]+}.{fmt}' => {
+      'storage' => 'tmp',
+    },
+  },
+}
+default[:tapalcatl][:handler_cfg_json] = handler_cfg.to_json
 
 # tapalcatl has a buffer pool to reduce GC pressure when copying large amounts
 # of data from the upstream server.

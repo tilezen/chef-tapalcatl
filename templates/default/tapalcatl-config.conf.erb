@@ -1,5 +1,5 @@
 listen <%= node[:tapalcatl][:listen] %>
-handler <%= @handler_cfg.to_json %>
+handler <%= node[:tapalcatl][:handler_cfg_json] %>
 <%- if node[:tapalcatl][:healthcheck] -%>
 healthcheck <%= node[:tapalcatl][:healthcheck] %>
 <%- end -%>
