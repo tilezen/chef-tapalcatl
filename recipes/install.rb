@@ -9,37 +9,9 @@
 
 include_recipe "runit"
 
-storage = {
-  's3' => {
-    'type' => 's3',
-    'bucket' => node[:tapalcatl][:s3][:bucket],
-    'keypattern' => node[:tapalcatl][:s3][:keypattern],
-    'layer' => 'all',
-    'metatilesize' => 1,
-    'healthcheck' => node[:tapalcatl][:s3][:healthcheck],
-  }
-}
-pattern = {
-  '/mapzen/vector/v1/all/{z:[0-9]+}/{x:[0-9]+}/{y:[0-9]+}.{fmt}' => {
-    'storage' => 's3',
-    'prefix' => node[:tapalcatl][:handler][:s3][:prefix],
-  }
-}
-handler_cfg = {
-  'aws' => {
-    'region' => node[:tapalcatl][:aws][:region],
-  },
-  'mime' => node[:tapalcatl][:mime],
-  'storage' => storage,
-  'pattern' => pattern,
-}
-
 template "#{node[:tapalcatl][:cfg_path]}/#{node[:tapalcatl][:cfg_file]}" do
   source 'tapalcatl-config.conf.erb'
   notifies :restart, 'runit_service[tapalcatl]', :delayed
-  variables(
-    handler_cfg: handler_cfg
-  )
 end
 
 url = "https://s3.amazonaws.com/mapzen.software/tile/tapalcatl/tapalcatl_server-#{node[:tapalcatl][:revision]}"
