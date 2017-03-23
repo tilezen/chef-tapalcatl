@@ -1,6 +1,11 @@
 tapalcatl CHANGELOG
 ===================
 
+0.3.0
+-----
+
+* Simplify the default tapalcatl configuration.
+
 0.2.0
 -----
 
