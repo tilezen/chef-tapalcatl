@@ -1,6 +1,11 @@
 tapalcatl CHANGELOG
 ===================
 
+0.3.1
+-----
+
+* Increase limit on open file descriptors. [#7](https://github.com/tilezen/chef-tapalcatl/pull/7).
+
 0.3.0
 -----
 
