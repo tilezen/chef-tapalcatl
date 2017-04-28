@@ -26,6 +26,12 @@ execute 'allow tapalcatl to bind on <1024 ports' do
   command 'setcap cap_net_bind_service=+ep ' + node[:tapalcatl][:bin] + '/tapalcatl_server'
 end
 
+# create directory, since runit doesn't seem to do this automatically
+directory '/var/log/tapalcatl' do
+  action :create
+  recursive true
+end
+
 runit_service 'tapalcatl' do
   action [:enable]
   log true

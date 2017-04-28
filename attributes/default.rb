@@ -72,3 +72,7 @@ default[:tapalcatl][:metrics][:enabled] = false
 default[:tapalcatl][:metrics][:statsd][:addr] = ''
 # prefix used when sending metrics to statsd
 default[:tapalcatl][:metrics][:statsd][:prefix] = ''
+
+# most modern systems can handle lots and lots of open files, so it seems
+# safe to set the default quite high.
+default[:tapalcatl][:limits][:open_file] = 16384

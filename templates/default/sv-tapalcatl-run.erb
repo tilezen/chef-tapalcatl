@@ -1,6 +1,7 @@
 #!/bin/bash
 
 exec 2>&1
+ulimit -n <%= node[:tapalcatl][:limits][:open_file] %>
 exec chpst -u <%= node[:tapalcatl][:user][:user] %> \
      <%= node['tapalcatl']['bin'] %>/tapalcatl_server \
      -config <%= node[:tapalcatl][:cfg_path] + "/" + node[:tapalcatl][:cfg_file] %>
