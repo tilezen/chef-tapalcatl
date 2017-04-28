@@ -109,6 +109,12 @@ Attributes
     <td>The user's name.</td>
     <td><tt>tapalcatl</tt></td>
   </tr>
+  <tr>
+    <td><tt>['tapalcatl']['limits']['open_files']</tt></td>
+    <td>Integer</td>
+    <td>The maximum number of open file descriptors allowed.</td>
+    <td>The value in <tt>/proc/sys/fs/file-max</tt></td>
+  </tr>
 </table>
 
 Contributing
