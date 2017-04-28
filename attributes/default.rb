@@ -73,6 +73,6 @@ default[:tapalcatl][:metrics][:statsd][:addr] = ''
 # prefix used when sending metrics to statsd
 default[:tapalcatl][:metrics][:statsd][:prefix] = ''
 
-# most modern systems can handle lots and lots of open files, so it seems
-# safe to set the default quite high.
-default[:tapalcatl][:limits][:open_file] = 16384
+# default to using whatever the maximum is that the system advertises in
+# /proc/sys/fs/file-max. override to set a specific (lower) value.
+default[:tapalcatl][:limits][:open_files] = nil

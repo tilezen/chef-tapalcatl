@@ -32,6 +32,19 @@ directory '/var/log/tapalcatl' do
   recursive true
 end
 
+# set the default to the max if there's no default set
+ruby_block "set default ulimit" do
+  block do
+    unless node.default[:tapalcatl][:limits][:open_files]
+      max = File.read('/proc/sys/fs/file-max').to_i
+      # sanity check
+      if max >= 1024
+        node.default[:tapalcatl][:limits][:open_files] = max
+      end
+    end
+  end
+end
+
 runit_service 'tapalcatl' do
   action [:enable]
   log true
